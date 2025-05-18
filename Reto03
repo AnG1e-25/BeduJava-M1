@@ -1,0 +1,39 @@
+**Proyecto**
+import java.util.Scanner;
+
+public class SimuladorFarmacia {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Lectura de datos
+        System.out.print("Nombre del medicamento: ");
+        String nombre = sc.nextLine();
+
+        System.out.print("Precio unitario: $");
+        double precio = sc.nextDouble();
+
+        System.out.print("Cantidad de piezas: ");
+        int cantidad = sc.nextInt();
+
+        // Cálculos
+        double totalSinDesc = precio * cantidad;
+        // Usamos var en la siguiente línea
+        var aplicaDesc = totalSinDesc > 500.0 ? true : false;
+        double descuento  = aplicaDesc ? totalSinDesc * 0.15 : 0.0;
+        double totalPagar = totalSinDesc - descuento;
+
+        // Salida formateada
+        System.out.println();
+        System.out.println("**** RESUMEN DE COMPRA ****");
+        System.out.println("Medicamento: " + nombre);
+        System.out.println("Cantidad: " + cantidad);
+        System.out.println("Precio unitario: $" + precio);
+        System.out.println("Total sin descuento: $" + totalSinDesc);
+        System.out.println("¿Aplica descuento?: " + aplicaDesc);
+        System.out.println("Descuento: $" + descuento);
+        System.out.println("Total a pagar: $" + totalPagar);
+
+        sc.close();
+    }
+}
+
