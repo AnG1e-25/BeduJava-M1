@@ -1,0 +1,73 @@
+
+**PROYECTO CAJEROATOMATICO**
+
+import java.util.Scanner;
+
+public class CajeroAutomatico {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Saldo inicial
+        var saldo = 1000.0;
+        int opcion;
+
+        do {
+            // Menú interactivo
+            System.out.println("\n***Bienvenido al cajero automático ***");
+            System.out.println("1. Consultar saldo");
+            System.out.println("2. Depositar dinero");
+            System.out.println("3. Retirar dinero");
+            System.out.println("4. Salir");
+            System.out.print("Elige una opción: ");
+            opcion = sc.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    // Consultar saldo
+                    System.out.printf("Tu saldo actual es: $%.2f%n", saldo);
+                    break;
+
+                case 2:
+                    // Depositar dinero
+                    System.out.print("Monto a depositar: $");
+                    double deposito = sc.nextDouble();
+                    if (deposito <= 0) {
+                        System.out.println("Debe ingresar un monto positivo.");
+                        break;
+                    }
+                    saldo += deposito;
+                    System.out.printf("Depósito exitoso. Nuevo saldo: $%.2f%n", saldo);
+                    break;
+
+                case 3:
+                    // Retirar dinero
+                    System.out.print("Monto a retirar: $");
+                    double retiro = sc.nextDouble();
+                    if (retiro <= 0) {
+                        System.out.println("Debe ingresar un monto positivo.");
+                        break;
+                    }
+                    if (retiro > saldo) {
+                        System.out.println("Saldo insuficiente. Operación cancelada.");
+                        break;
+                    }
+                    saldo -= retiro;
+                    System.out.printf("Retiro exitoso. Nuevo saldo: $%.2f%n", saldo);
+                    break;
+
+                case 4:
+                    // Salir
+                    System.out.println("Gracias por usar el cajero automático. ¡Hasta luego!");
+                    break;
+
+                default:
+                    // Opción inválida
+                    System.out.println("Opción no válida. Por favor, elige entre 1 y 4.");
+                    break;
+            }
+
+        } while (opcion != 4);
+
+        sc.close();
+    }
+}
