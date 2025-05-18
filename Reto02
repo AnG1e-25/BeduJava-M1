@@ -1,0 +1,31 @@
+**PARA EL PROYECTO ENTRADA **
+public record Entrada  (String nombredelevento,Double precio){
+
+    // Constructor que reciba los valores al momento de crear el objeto
+public Entrada (String nombredelevento, Double precio) {
+    this.nombredelevento = nombredelevento;
+    this.precio = precio;
+
+}
+ // metodo
+     public void mostrarInformacion(){
+    System.out.println("Nombre del evento: "+nombredelevento+" | Precio: "+precio);
+     }
+
+     
+}
+
+
+***PARA EL PROYECTO "PRINCIPAL" ***
+
+public class Priincipal {
+    public static void main(String[] args) {
+  //objeto
+        Entrada entrada1 = new Entrada("Obra de teatro",124.5);
+        Entrada entrada2 = new Entrada("Concierto",989.9);
+    //Llamamos al metodo
+        entrada1.mostrarInformacion();
+        entrada2.mostrarInformacion();
+    }
+}
+
