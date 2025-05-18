@@ -1,0 +1,45 @@
+**PARA  EL PROYECTO DE LA CLASE PACIENTE**
+
+public class Paciente {
+    //Atributos
+    String nombre;
+    int edad;
+    String numexpediente;
+
+    //metodo
+    public void mostrarInformacion(){
+        System.out.println("Nombre del paciente: " + nombre);
+        System.out.println("Edad:" + edad);
+        System.out.println("Numero de expediente: " + numexpediente);
+
+    }
+}
+
+**PARA EL PROYECTO DE LA CLASE PRINCIPAL**
+
+import java.util.Scanner;
+public class Prrincipal{
+    public static void main(String [] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        //Objeto tipo paciente
+        Paciente paciente1 = new Paciente();
+
+         //Asignamos los valores
+        System.out.println("Ingrese el nombre del paciente:");
+        paciente1.nombre = scanner.nextLine();
+
+        System.out.println("Ingrese la edad:");
+        paciente1.edad = scanner.nextInt();
+        scanner.nextLine();
+
+
+        System.out.println("Ingrese el número de expediente:");
+        paciente1.numexpediente= scanner.nextLine();
+
+        //LLamamos al metodo mostrar Informacion
+         paciente1.mostrarInformacion();
+
+       scanner.close();
+    }
+}
