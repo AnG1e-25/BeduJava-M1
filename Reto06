@@ -1,0 +1,62 @@
+****PARA EL ROYECTO FACTURA ***
+
+import java.util.Optional;
+
+public class Factura {
+    // Atributos privados
+    private double monto;
+    private String descripcion;
+    private Optional<String> rfc;
+
+    // Constructor
+    public Factura(double monto, String descripcion, String rfc) {
+        this.monto = monto;
+        this.descripcion = descripcion;
+        // Si rfc es null, guardamos Optional.empty()si no, Optional.of(rfc)
+        this.rfc = Optional.ofNullable(rfc);
+    }
+
+    // Getters públicos
+    public double getMonto() {
+        return monto;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public Optional<String> getRfc() {
+        return rfc;
+    }
+
+    // Método que devuelve el resumen formateado
+    public String getResumen() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("📄 Factura generada:\n");
+        sb.append("Descripción: ").append(descripcion).append("\n");
+        sb.append(String.format("Monto: $%.2f%n", monto));
+        sb.append("RFC: ")
+          .append(rfc.orElse("[No proporcionado]"))
+          .append("\n");
+        return sb.toString();
+    }
+}
+
+
+
+*****PARA EL PROYECTO PRINCIPAL ****+
+
+
+public class Principal {
+    public static void main(String[] args) {
+        // Factura con RFC
+        Factura factura1 = new Factura(2500.0, "Servicio de consultoría", "ABCC010101XYZ");
+        System.out.println(factura1.getResumen());
+
+        // Factura sin RFC (pasamos null)
+        Factura factura2 = new Factura(1800.0, "Reparación de equipo", null);
+        System.out.println(factura2.getResumen());
+    }
+}
+
+
