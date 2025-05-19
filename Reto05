@@ -1,0 +1,102 @@
+***PARA EL PROYECTO VUELO **
+public class Vuelo {
+    final String codigoVuelo;       // Constante
+    String destino;
+    String horaSalida;
+    Pasajero asientoReservado;      // Se asignará una instancia o null
+
+    public Vuelo(String codigoVuelo, String destino, String horaSalida) {
+        this.codigoVuelo = codigoVuelo;
+        this.destino = destino;
+        this.horaSalida = horaSalida;
+        this.asientoReservado = null;
+    }
+
+    // Método con parámetro y valor de retorno
+    public boolean reservarAsiento(Pasajero p) {
+        if (asientoReservado == null) {
+            asientoReservado = p;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Metodo con sobrecarga permita reservar con una cadena simples
+    public boolean reservarAsiento(String nombre, String pasaporte) {
+        Pasajero nuevoPasajero = new Pasajero(nombre, pasaporte);
+        return reservarAsiento(nuevoPasajero);
+    }
+
+    // Método sin retorno
+    public void cancelarReserva() {
+        asientoReservado = null;
+    }
+
+    // Método que retorna un String
+    public String obtenerItinerario() {
+        String info = "✈️ Itinerario del vuelo:\n";
+        info += "Código: " + codigoVuelo + "\n";
+        info += "Destino: " + destino + "\n";
+        info += "Salida: " + horaSalida + "\n";
+        if (asientoReservado != null) {
+            info += "Pasajero: " + asientoReservado.nombre + "\n";
+        } else {
+            info += "Pasajero: [Sin reserva]\n";
+        }
+        return info;
+    }
+}
+
+
+
+
+*****PARA EL PROYECTO PASAJERO***
+
+public class Pasajero {
+    String nombre;       // Visibilidad por defecto
+    String pasaporte;
+
+    public Pasajero(String nombre, String pasaporte) {
+        this.nombre = nombre;
+        this.pasaporte = pasaporte;
+    }
+}
+
+
+
+
+****PARA EL PROYECTO PRINCIPAL ***
+
+public class Principal {
+    public static void main(String[] args) {
+        // Crear un pasajero
+        Pasajero pasajero = new Pasajero("Ana Martínez", "P123456");
+
+        // Crear un vuelo
+        Vuelo vuelo = new Vuelo("UX123", "París", "14:30");
+
+        // Reservar asiento
+        boolean reservado = vuelo.reservarAsiento(pasajero);
+        if (reservado) {
+            System.out.println("✅ Reserva realizada con éxito.\n");
+        } else {
+            System.out.println("❌ No se pudo realizar la reserva.\n");
+        }
+
+        // Mostrar itinerario
+        System.out.println(vuelo.obtenerItinerario());
+
+        // Cancelar reserva
+        System.out.println("❌ Cancelando reserva...\n");
+        vuelo.cancelarReserva();
+
+        // Mostrar itinerario actualizado
+        System.out.println(vuelo.obtenerItinerario());
+
+        // Realizamos una nueva reservacion
+        vuelo.reservarAsiento("Mario Gonzalez", "P987654");
+        System.out.println(vuelo.obtenerItinerario());
+    }
+}
+
