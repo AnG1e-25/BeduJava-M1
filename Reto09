@@ -1,0 +1,156 @@
+********PARA PROYECTO ANBUALANCIA****¨**
+
+public class Ambulancia extends UnidadEmergencia {
+    private SistemaGPS gps;
+    private Sirena sirena;
+    private Operador operador;
+
+    public Ambulancia(String nombre, String nombreOperador) {
+        super(nombre);
+        this.gps = new SistemaGPS();
+        this.sirena = new Sirena();
+        this.operador = new Operador(nombreOperador);
+    }
+
+    public void iniciarOperacion() {
+        activarUnidad();
+        gps.localizar();
+        sirena.activarSirena();
+        operador.reportarse();
+        responder();
+    }
+
+    @Override
+    public void responder() {
+        System.out.println("🩺 Ambulancia en camino al hospital más cercano.");
+    }
+}
+
+
+********PARA PROYECTO CentralEmergencias *******
+
+public class CentralEmergencias {
+    public static void main(String[] args) {
+        Ambulancia ambulancia = new Ambulancia("Ambulancia", "Juan");
+        Patrulla patrulla = new Patrulla("Patrulla", "Laura");
+        UnidadBomberos bomberos = new UnidadBomberos("UnidadBomberos", "Marco");
+
+        ambulancia.iniciarOperacion();
+        System.out.println();
+
+        patrulla.iniciarOperacion();
+        System.out.println();
+
+        bomberos.iniciarOperacion();
+    }
+}
+
+********PARA PROYECTO Operador *******
+public class Operador {
+    String nombre;
+
+    public Operador(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void reportarse() {
+        System.out.println("👷 Operador " + nombre + " reportándose.");
+    }
+}
+
+
+
+
+********PARA PROYECTO Patrulla  *******
+Public class Patrulla extends UnidadEmergencia {
+    private SistemaGPS gps;
+    private Sirena sirena;
+    private Operador operador;
+
+    public Patrulla(String nombre, String nombreOperador) {
+        super(nombre);
+        this.gps = new SistemaGPS();
+        this.sirena = new Sirena();
+        this.operador = new Operador(nombreOperador);
+    }
+
+    public void iniciarOperacion() {
+        activarUnidad();
+        gps.localizar();
+        sirena.activarSirena();
+        operador.reportarse();
+        responder();
+    }
+
+    @Override
+    public void responder() {
+        System.out.println("🚓 Patrulla atendiendo situación de seguridad ciudadana.");
+    }
+}
+
+
+
+
+********PARA PROYECTO SIRENA  *******
+
+public class Sirena {
+    public void activarSirena() {
+        System.out.println("🔊 Sirena: Activada.");
+    }
+}
+
+
+
+********PARA PROYECTO SistemaGPS *******
+public class SistemaGPS {
+    public void localizar() {
+        System.out.println("📍 GPS: Ubicación actual detectada.");
+    }
+}
+
+
+
+********PARA PROYECTO  UnidadBomberos*******
+public class UnidadBomberos extends UnidadEmergencia {
+    private SistemaGPS gps;
+    private Sirena sirena;
+    private Operador operador;
+
+    public UnidadBomberos(String nombre, String nombreOperador) {
+        super(nombre);
+        this.gps = new SistemaGPS();
+        this.sirena = new Sirena();
+        this.operador = new Operador(nombreOperador);
+    }
+
+    public void iniciarOperacion() {
+        activarUnidad();
+        gps.localizar();
+        sirena.activarSirena();
+        operador.reportarse();
+        responder();
+    }
+
+    @Override
+    public void responder() {
+        System.out.println("🔥 Unidad de bomberos respondiendo a incendio estructural.");
+    }
+}
+
+
+********PARA PROYECTO UnidadEmergencia******
+public abstract class UnidadEmergencia {
+    String nombre;
+
+    public UnidadEmergencia(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void activarUnidad() {
+        System.out.println("🚨 Activando unidad: " + nombre);
+    }
+
+    public abstract void responder();
+}
+
+
